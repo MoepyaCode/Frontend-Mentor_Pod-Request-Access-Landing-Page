@@ -1,4 +1,4 @@
-import applePodcasts from './apple-podcasts.svg';
+import applePodcasts from './apple-podcast.svg';
 import bgPatternDots from './bg-pattern-dots.svg';
 import googlePodcasts from './google-podcasts.svg';
 import imageHost from './image-host.jpg';
