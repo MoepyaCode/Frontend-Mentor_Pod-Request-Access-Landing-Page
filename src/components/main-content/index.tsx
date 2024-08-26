@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { ElementRef } from 'react'
 import { Assets, ScreenViewEnum } from '../../assets'
 
 type Props = {
-  screenView:  'mobile' | 'tablet' | 'desktop' | null
+  screenView: 'mobile' | 'tablet' | 'desktop' | null
 }
 
 export default function MainContent(props: Props) {
+  const emailRef = React.useRef<ElementRef<'input'>>(null)
+  const [error, setError] = React.useState<string | null>(null)
 
   function musicPlatformsContent() {
     const data: string[] = [
@@ -26,13 +28,31 @@ export default function MainContent(props: Props) {
 
   function subscribeFormContent() {
 
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+
+      try {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+        if (!emailRegex.test(emailRef.current?.value || '')) {
+          throw new Error('Oops! Please check your email')
+        }
+        setError(null)
+        e.currentTarget.reset()
+      } catch (error) {
+        setError((error as Error).message)
+      }
+    }
+
     return (
-      <form className='self-center md:self-auto flex flex-col flex-nowrap gap-[8px] sm:gap-0 sm:flex-row w-full max-w-[448px]  sm:bg-[#2C344B] sm:rounded-full sm:border-4 sm:border-[#2C344B]'>
-        <input className={`flex-grow h-[44px] text-white font-bold text-[14px] leading-[200%] pl-[28px] outline-none border-none rounded-full sm:rounded-r-none bg-[#2C344B] placeholder-white placeholder:opacity-50 placeholder:text-[14px] placeholder:leading-[200%] placeholder:font-bold`} placeholder='Email address' type="text" />
-        <button className='bg-[#54E6AF] relative grid place-items-center before:absolute before:w-full before:h-full before:bg-transparent before:hover:bg-white before:hover:opacity-50 overflow-hidden before:transition before:ease-in before:duration-300 h-[44px] rounded-full font-bold text-slate-900 text-[14px] leading-[200%] sm:w-[172px]'>
-          <span className='z-10'>Request Access</span>
-        </button>
-      </form>
+      <div className='self-center md:self-auto w-full max-w-[448px] flex flex-col gap-[8px]'>
+        <form onSubmit={handleSubmit} className={`self-center md:self-auto flex flex-col flex-nowrap gap-[8px] sm:gap-0 sm:flex-row w-full max-w-[448px]  sm:bg-[#2C344B] sm:rounded-full sm:border-[#2C344B] ${error ? 'sm:outline sm:outline-[3px] sm:border-2 sm:outline-[#FB3E3E]' : 'sm:border-4 sm:outline-none'}`}>
+          <input ref={emailRef} className={`flex-grow h-[44px] text-white font-bold text-[14px] leading-[200%] pl-[28px] outline-none border-none rounded-full sm:rounded-r-none bg-[#2C344B] placeholder-white placeholder:opacity-50 placeholder:text-[14px] placeholder:leading-[200%] placeholder:font-bold`} placeholder='Email address' type="text" />
+          <button type='submit' className='bg-[#54E6AF] relative grid place-items-center before:absolute before:w-full before:h-full before:bg-transparent before:hover:bg-white before:hover:opacity-50 overflow-hidden before:transition before:ease-in before:duration-300 h-[44px] rounded-full font-bold text-slate-900 text-[14px] leading-[200%] sm:w-[172px]'>
+            <span className='z-10'>Request Access</span>
+          </button>
+        </form>
+        {error && <p className='self-center md:self-auto font-bold text-[12px] text-[#FB3E3E] md:pl-[32px]'>{error}</p>}
+      </div>
     )
   }
 
