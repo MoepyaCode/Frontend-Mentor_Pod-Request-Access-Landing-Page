@@ -40,12 +40,12 @@ export default function MainContent(props: Props) {
     <div className='relative flex flex-col gap-[40px] md:pt-[88px] md:bg-[#121725]'>
 
       {/* #1 */}
-      <div className='font-light flex flex-col gap-[16px] md:gap-[24px] text-center md:text-left md:w-[62.5%]'>
+      <div className='font-light flex flex-col gap-[16px] md:gap-[24px] text-center md:text-left md:w-[62.5%] xl:w-[80%]'>
         <h1 className='uppercase text-[32px] md:text-[48px] leading-[120%] text-white'>
           <span className='text-[#54E6AF]'>Publish your podcasts</span> everywhere.
         </h1>
 
-        <p className='text-[#C2CBE5] text-[14px] md:text-[18px] leading-[120%]'>
+        <p className='text-[#C2CBE5] text-[14px] md:text-[18px] leading-[120%] xl:w-[72.5%]'>
           Upload your audio to Pod with a single click. We’ll then distribute your podcast to Spotify, Apple Podcasts, Google Podcasts, Pocket Casts and more!
         </p>
       </div>
