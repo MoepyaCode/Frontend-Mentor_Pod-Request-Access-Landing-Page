@@ -46,7 +46,7 @@ export default function MainContent(props: Props) {
     return (
       <div className='self-center md:self-auto w-full max-w-[448px] flex flex-col gap-[8px]'>
         <form onSubmit={handleSubmit} className={`self-center md:self-auto flex flex-col flex-nowrap gap-[8px] sm:gap-0 sm:flex-row w-full max-w-[448px]  sm:bg-[#2C344B] sm:rounded-full sm:border-[#2C344B] ${error ? 'sm:outline sm:outline-[3px] sm:border-2 sm:outline-[#FB3E3E]' : 'sm:border-4 sm:outline-none'}`}>
-          <input ref={emailRef} className={`flex-grow h-[44px] text-white font-bold text-[14px] leading-[200%] pl-[28px] outline-none border-none rounded-full sm:rounded-r-none bg-[#2C344B] placeholder-white placeholder:opacity-50 placeholder:text-[14px] placeholder:leading-[200%] placeholder:font-bold`} placeholder='Email address' type="text" />
+          <input ref={emailRef} className={`flex-grow h-[44px] text-white font-bold text-[14px] leading-[200%] pl-[28px] outline-none ${error ? 'border-2 border-[#FB3E3E] sm:border-none': 'border-none'} rounded-full sm:rounded-r-none bg-[#2C344B] placeholder-white placeholder:opacity-50 placeholder:text-[14px] placeholder:leading-[200%] placeholder:font-bold`} placeholder='Email address' type="text" />
           <button type='submit' className='bg-[#54E6AF] relative grid place-items-center before:absolute before:w-full before:h-full before:bg-transparent before:hover:bg-white before:hover:opacity-50 overflow-hidden before:transition before:ease-in before:duration-300 h-[44px] rounded-full font-bold text-slate-900 text-[14px] leading-[200%] sm:w-[172px]'>
             <span className='z-10'>Request Access</span>
           </button>
