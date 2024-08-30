@@ -1,4 +1,4 @@
-# Meet landing page
+# Pod request access landing page
 
 <!-- add description of project -->
 
